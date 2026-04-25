@@ -1,60 +1,29 @@
-body {
-  margin: 0;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  background: #f2f2f2;
-}
+function addTask() {
+  const input = document.getElementById("taskInput");
+  const taskText = input.value.trim();
 
-.container {
-  max-width: 500px;
-  margin: auto;
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-}
+  if (taskText === "") {
+    alert("Masukkan tugas dulu!");
+    return;
+  }
 
-h1 {
-  text-align: center;
-}
+  const li = document.createElement("li");
 
-input {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  box-sizing: border-box;
-}
+  const span = document.createElement("span");
+  span.innerText = taskText;
 
-button {
-  width: 100%;
-  margin-top: 10px;
-  padding: 12px;
-  border: none;
-  background: #4CAF50;
-  color: white;
-  font-size: 16px;
-  border-radius: 8px;
-}
+  const button = document.createElement("button");
+  button.innerText = "Hapus";
+  button.className = "delete-btn";
 
-ul {
-  list-style: none;
-  padding: 0;
-  margin-top: 20px;
-}
+  button.onclick = function () {
+    li.remove();
+  };
 
-li {
-  background: #f7f7f7;
-  padding: 12px;
-  margin-top: 10px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+  li.appendChild(span);
+  li.appendChild(button);
 
-.delete-btn {
-  background: red;
-  color: white;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 6px;
+  document.getElementById("taskList").appendChild(li);
+
+  input.value = "";
 }
